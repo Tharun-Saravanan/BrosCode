@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import { useCart } from '../contexts/CartContext';
 import { useAppSelector } from '../store/hooks';
 import { ApiPurchaseService, type PaymentDetails, type ShippingAddress } from '../services/apiPurchaseService';
 import type { CartItem } from '../types/cart';
@@ -8,6 +9,7 @@ import type { CartItem } from '../types/cart';
 const Checkout: React.FC = () => {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
+  const { clearCart } = useCart();
   const cart = useAppSelector((state) => state.cart);
 
   const [step, setStep] = useState<'shipping' | 'payment' | 'processing'>('shipping');
@@ -103,6 +105,9 @@ const Checkout: React.FC = () => {
       };
 
       const result = await ApiPurchaseService.createPurchase(currentUser.uid, purchaseData);
+      
+      // Clear the cart after successful purchase
+      await clearCart();
       
       // Navigate to success page
       navigate('/order-success', { state: { purchase: result.purchase } });
