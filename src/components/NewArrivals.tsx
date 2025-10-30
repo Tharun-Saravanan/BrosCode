@@ -11,8 +11,8 @@ const NewArrivals = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <span className="text-sm font-medium text-gray-500 tracking-widest uppercase">The Latest Collection</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-3">NEW ARRIVALS</h2>
+            <span className="text-sm font-medium text-gray-500 tracking-widest uppercase">Suggested For You</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-3">Suggested Snacks</h2>
             <div className="w-24 h-1 bg-black mx-auto"></div>
           </div>
           <div className="flex justify-center">
@@ -39,10 +39,10 @@ const NewArrivals = () => {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <span className="text-sm font-medium text-gray-500 tracking-widest uppercase">The Latest Collection</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-3">NEW ARRIVALS</h2>
+          <span className="text-sm font-medium text-gray-500 tracking-widest uppercase">Suggested For You</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-3">Suggested Snacks</h2>
           <div className="w-24 h-1 bg-black mx-auto"></div>
-          <p className="text-gray-600 mt-6 max-w-2xl mx-auto">Discover our newest handcrafted premium leather shoes, designed for the modern gentleman who appreciates quality and style.</p>
+          <p className="text-gray-600 mt-6 max-w-2xl mx-auto">Discover personalized snack picks curated just for you — from crispy chips and decadent sweets to rich chocolates and crunchy nuts.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">

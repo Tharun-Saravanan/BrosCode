@@ -43,15 +43,15 @@ const Hero = () => {
       <div className="relative w-full overflow-hidden px-4 md:px-8 py-8 mt-20">
         {/* Heading */}
         <div className="w-full mx-auto mb-6 px-2 flex flex-col items-center justify-center text-center">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900">Featured Snacks</h1>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900">Best Snacks In Your Neighborhood</h1>
           <p className="text-gray-600 mt-3 text-lg md:text-xl">Handpicked treats and trending flavors curated just for you.</p>
         </div>
-  <div className="relative w-full h-[500px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl mx-auto ">
+  <div className="relative w-full h-[500px] md:h-[500px] overflow-hidden shadow-xl mx-auto ">
       {/* Image Container */}
       {slides.map((slide, index) => (
         <div
           key={index}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 rounded-2xl overflow-hidden ${
+            className={`absolute inset-0 w-full h-full transition-opacity duration-1000 rounded overflow-hidden ${
             index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -59,7 +59,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent z-10"></div>
 
           {/* Background Image */}
-            <div className="absolute inset-0 rounded-2xl overflow-hidden">
+            <div className="absolute inset-0  overflow-hidden">
             <img
               src={slide.image}
               alt={slide.title}

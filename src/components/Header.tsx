@@ -67,8 +67,8 @@ const Header = () => {
     };
 
     return (
-        <header className={`fixed top-3 left-0 w-full z-50 bg-transparent transition-transform duration-300 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
-            <div className='mx-auto w-full max-w-none px-8 py-4 md:py-6 flex justify-between items-center bg-white rounded-xl shadow-sm'>
+        <header className={`fixed top-0 left-0 w-full z-50 bg-transparent transition-transform duration-300 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+            <div className='mx-auto w-full max-w-none px-8 py-4 md:py-6 flex justify-between items-center bg-white shadow-sm'>
                 <Link to="/" className='text-2xl font-bold tracking-tighter'>Quick Snack</Link>
 
                 <button className='md:hidden focus:outline-none'
@@ -79,8 +79,8 @@ const Header = () => {
                 </button>
 
                 <nav className='hidden md:flex gap-8'>
-                    <Link to="/collections/new-arrivals" className='font-medium text-sm tracking-wide hover:text-gray-900 relative group'>
-                        NEW ARRIVALS
+                    <Link to="/collections/new-arrivals" className='font-medium text-sm tracking-wide hover:text-gray-900 relative group uppercase'>
+                        Suggested For You
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                     <Link to="/collections/best-sellers" className='font-medium text-sm tracking-wide hover:text-gray-900 relative group'>
