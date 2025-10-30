@@ -293,6 +293,23 @@ functions:
               - X-Amz-Security-Token
             allowCredentials: false
 
+  # User Dashboard API
+  getUserDashboard:
+    handler: src/handlers/users/getUserDashboard.handler
+    events:
+      - http:
+          path: users/{userId}/dashboard
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
   # Purchase APIs
   createPurchase:
     handler: src/handlers/purchases/createPurchase.handler

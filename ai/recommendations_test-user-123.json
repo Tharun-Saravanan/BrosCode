@@ -1,0 +1,45 @@
+{
+  "user_id": "test-user-123",
+  "user_context": {
+    "cart_items_count": 0,
+    "liked_items_count": 0,
+    "cart_items": [],
+    "liked_items": []
+  },
+  "recommendations": [
+    {
+      "product_id": "69bead17-a44e-43f3-a435-d4622d28cbac",
+      "name": "croissant",
+      "price": 800,
+      "category": "Boots",
+      "description": "tasty",
+      "image_url": "https://siblingshoe-bucket.s3.us-east-2.amazonaws.com/shoes/69bead17-a44e-43f3-a435-d4622d28cbac/main.jpg",
+      "sizes": [
+        "10"
+      ]
+    },
+    {
+      "product_id": "d1bc6634-3067-42bb-bd98-dd722c71ff7f",
+      "name": "Bun",
+      "price": 300,
+      "category": "Sandals",
+      "description": "34567i",
+      "image_url": "https://siblingshoe-bucket.s3.us-east-2.amazonaws.com/shoes/d1bc6634-3067-42bb-bd98-dd722c71ff7f/main.jpg",
+      "sizes": [
+        "6.5"
+      ]
+    },
+    {
+      "product_id": "3e96d9b6-9042-4bc1-a1f1-a4a0cbf4a6d5",
+      "name": "popcorn",
+      "price": 150,
+      "category": "Sandals",
+      "description": "popcorn",
+      "image_url": "https://siblingshoe-bucket.s3.us-east-2.amazonaws.com/shoes/3e96d9b6-9042-4bc1-a1f1-a4a0cbf4a6d5/main.jpg",
+      "sizes": [
+        "10.5"
+      ]
+    }
+  ],
+  "recommendation_count": 3
+}

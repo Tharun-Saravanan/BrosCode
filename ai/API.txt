@@ -1,0 +1,67 @@
+AI RECOMMENDATION API ENDPOINTS
+================================
+
+Base URL: http://<EC2-IP>:5000
+
+ENDPOINTS:
+
+1. Health Check
+   GET /
+   GET /health
+   
+   Response:
+   {
+     "status": "healthy",
+     "model_status": "loaded|fallback"
+   }
+
+2. Get Recommendations (Single User)
+   GET /api/recommendations/<user_id>?limit=5
+   
+   Example:
+   GET /api/recommendations/test-user-123?limit=5
+   
+   Response:
+   {
+     "user_id": "test-user-123",
+     "user_context": {
+       "cart_items_count": 0,
+       "liked_items_count": 0,
+       "cart_items": [...],
+       "liked_items": [...]
+     },
+     "recommendations": [...],
+     "recommendation_count": 5,
+     "model_used": "rule-based"
+   }
+
+3. Batch Recommendations (Multiple Users)
+   POST /api/recommendations
+   
+   Request Body:
+   {
+     "user_ids": ["user1", "user2"],
+     "limit": 5
+   }
+   
+   Response:
+   {
+     "user1": {
+       "recommendations": [...],
+       "count": 5
+     },
+     "user2": {
+       "recommendations": [...],
+       "count": 5
+     }
+   }
+
+TESTING:
+
+curl http://<EC2-IP>:5000/health
+
+curl http://<EC2-IP>:5000/api/recommendations/test-user-123?limit=5
+
+curl -X POST http://<EC2-IP>:5000/api/recommendations \
+  -H "Content-Type: application/json" \
+  -d '{"user_ids": ["user1", "user2"], "limit": 5}'
