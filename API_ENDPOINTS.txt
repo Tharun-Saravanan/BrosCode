@@ -1,0 +1,77 @@
+===========================================
+BrosCode API Endpoints Reference
+===========================================
+Base URL: https://wb16fax93g.execute-api.us-east-2.amazonaws.com/dev
+
+===========================================
+PRODUCTS API
+===========================================
+GET    /products                      - Get all products
+GET    /products/{id}                 - Get single product
+GET    /products/category/{category}  - Get products by category
+POST   /products                      - Create product (admin)
+PUT    /products/{id}                 - Update product (admin)
+DELETE /products/{id}                 - Delete product (admin)
+
+===========================================
+CART API (User-specific)
+===========================================
+GET    /carts/{userId}                - Get user's cart
+POST   /carts/{userId}                - Add item to cart
+PUT    /carts/{userId}                - Update cart item quantity
+DELETE /carts/{userId}/items/{itemId} - Remove item from cart
+DELETE /carts/{userId}                - Clear entire cart
+
+Request Body (POST - Add to Cart):
+{
+  "productId": "string",
+  "name": "string",
+  "price": number,
+  "imageUrl": "string",
+  "size": "string",
+  "quantity": number,
+  "category": "string"
+}
+
+Request Body (PUT - Update Cart):
+{
+  "itemId": "string",
+  "quantity": number
+}
+
+===========================================
+LIKED PRODUCTS API (User-specific)
+===========================================
+GET    /liked/{userId}                      - Get user's liked products
+POST   /liked/{userId}                      - Add product to liked list
+DELETE /liked/{userId}/products/{productId} - Remove product from liked list
+DELETE /liked/{userId}                      - Clear all liked products
+
+Request Body (POST - Add Liked Product):
+{
+  "productId": "string",
+  "productName": "string"
+}
+
+===========================================
+DYNAMODB TABLES
+===========================================
+✅ sibilingshoe-products  - Product catalog
+✅ sibilingshoe-carts     - User shopping carts (Key: userId)
+✅ sibilingshoe-liked     - User liked products (Key: userId)
+
+===========================================
+AUTHENTICATION
+===========================================
+- Uses AWS Cognito for user authentication
+- User ID from Cognito is used as partition key
+- Guest users: Cart stored in localStorage only
+- Authenticated users: Cart synced to DynamoDB
+
+===========================================
+NOTES
+===========================================
+- All endpoints support CORS
+- Cart and Liked endpoints require userId
+- Data is user-specific and isolated
+- Guest carts migrate to user cart on login
