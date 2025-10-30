@@ -125,16 +125,7 @@ export const DYNAMODB_QUERIES = {
     TableName: AWS_CONFIG.dynamoDbTableName,
   },
 
-  // Get products by category
-  getProductsByCategory: (category: string) => ({
-    TableName: AWS_CONFIG.dynamoDbTableName,
-    IndexName: 'CategoryIndex',
-    KeyConditionExpression: 'category = :category',
-    ExpressionAttributeValues: {
-      ':category': category,
-    },
-    ScanIndexForward: false, // Sort by createdAt descending
-  }),
+  // Category feature removed
 
   // Get single product
   getProduct: (products_id: string) => ({

@@ -29,18 +29,6 @@ export const useProducts = () => {
   };
 };
 
-export const useProductsByCategory = (category: string) => {
-  const { products, loading, error } = useProducts();
-
-  const filteredProducts = products.filter(product => product.category === category);
-
-  return {
-    products: filteredProducts,
-    loading,
-    error,
-  };
-};
-
 export const useFeaturedProducts = (limit: number = 8) => {
   const { products, loading, error } = useProducts();
 

@@ -2,7 +2,6 @@
 import {
   ScanCommand,
   GetCommand,
-  QueryCommand,
 } from '@aws-sdk/lib-dynamodb';
 import { dynamoDbDocClient, AWS_CONFIG } from '../config/aws';
 import type { Product } from '../types/product';
@@ -29,7 +28,6 @@ export class DynamoProductService {
         name: item.name,
         price: typeof item.price === 'string' ? parseFloat(item.price) : item.price,
         description: item.description,
-        category: item.category,
         imageUrl: item.imageUrl,
         images: item.images || [],
         imageKeys: item.imageKeys || [],
@@ -77,7 +75,6 @@ export class DynamoProductService {
         name: item.name,
         price: typeof item.price === 'string' ? parseFloat(item.price) : item.price,
         description: item.description,
-        category: item.category,
         imageUrl: item.imageUrl,
         images: item.images || [],
         imageKeys: item.imageKeys || [],
@@ -93,33 +90,6 @@ export class DynamoProductService {
     }
   }
 
-  /**
-   * Get products by category
-   */
-  static async getProductsByCategory(category: string): Promise<Product[]> {
-    try {
-      console.log('DynamoProductService.getProductsByCategory called with category:', category);
-
-      const command = new QueryCommand({
-        TableName: AWS_CONFIG.dynamoDbTableName,
-        IndexName: 'CategoryIndex',
-        KeyConditionExpression: 'category = :category',
-        ExpressionAttributeValues: {
-          ':category': category,
-        },
-        ScanIndexForward: false, // Sort by createdAt descending
-      });
-
-      const response = await dynamoDbDocClient.send(command);
-      const products = (response.Items || []) as Product[];
-
-      console.log('DynamoProductService.getProductsByCategory returning', products.length, 'products');
-      return products;
-    } catch (error) {
-      console.error('Error fetching products by category from DynamoDB:', error);
-      throw new Error('Failed to fetch products by category');
-    }
-  }
 
   /**
    * Get featured products
@@ -140,7 +110,7 @@ export class DynamoProductService {
   }
 
   /**
-   * Search products by name, description, or category
+   * Search products by name or description
    */
   static async searchProducts(searchTerm: string): Promise<Product[]> {
     try {
@@ -153,8 +123,7 @@ export class DynamoProductService {
       const searchTermLower = searchTerm.toLowerCase();
       const filteredProducts = allProducts.filter(product =>
         product.name.toLowerCase().includes(searchTermLower) ||
-        product.description.toLowerCase().includes(searchTermLower) ||
-        product.category.toLowerCase().includes(searchTermLower)
+        product.description.toLowerCase().includes(searchTermLower)
       );
 
       console.log('DynamoProductService.searchProducts returning', filteredProducts.length, 'products');
@@ -165,35 +134,6 @@ export class DynamoProductService {
     }
   }
 
-  /**
-   * Get products by multiple categories
-   */
-  static async getProductsByCategories(categories: string[]): Promise<Product[]> {
-    try {
-      console.log('DynamoProductService.getProductsByCategories called with categories:', categories);
-
-      const allProducts: Product[] = [];
-      
-      // Fetch products for each category
-      for (const category of categories) {
-        const categoryProducts = await this.getProductsByCategory(category);
-        allProducts.push(...categoryProducts);
-      }
-
-      // Remove duplicates and sort by createdAt
-      const uniqueProducts = allProducts.filter((product, index, self) =>
-        index === self.findIndex(p => p.id === product.id)
-      );
-
-      uniqueProducts.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-
-      console.log('DynamoProductService.getProductsByCategories returning', uniqueProducts.length, 'products');
-      return uniqueProducts;
-    } catch (error) {
-      console.error('Error fetching products by categories:', error);
-      throw new Error('Failed to fetch products by categories');
-    }
-  }
 
   /**
    * Subscribe to product updates (polling-based for now)
@@ -241,11 +181,8 @@ export class DynamoProductService {
 
       const allProducts = await this.getAllProducts();
       
-      // Count products by category
+      // Categories removed; keep empty aggregation for compatibility
       const productsByCategory: Record<string, number> = {};
-      allProducts.forEach(product => {
-        productsByCategory[product.category] = (productsByCategory[product.category] || 0) + 1;
-      });
 
       // Get recent products (last 10)
       const recentProducts = allProducts.slice(0, 10);
@@ -307,7 +244,6 @@ export class DynamoProductService {
           name: item.name,
           price: typeof item.price === 'string' ? parseFloat(item.price) : item.price,
           description: item.description,
-          category: item.category,
           imageUrl: item.imageUrl,
           images: item.images || [],
           imageKeys: item.imageKeys || [],

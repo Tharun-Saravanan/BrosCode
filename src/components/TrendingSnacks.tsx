@@ -1,7 +1,7 @@
 
 import { useNavigate } from 'react-router-dom'
 
-const TrendingFormals = () => {
+const TrendingSnacks = () => {
   const navigate = useNavigate();
   const products = [
     {
@@ -116,4 +116,4 @@ const TrendingFormals = () => {
   )
 }
 
-export default TrendingFormals;
+export default TrendingSnacks;

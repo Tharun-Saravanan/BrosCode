@@ -43,7 +43,7 @@ const Hero = () => {
       <div className="relative w-full overflow-hidden px-4 md:px-8 py-8 mt-20">
         {/* Heading */}
         <div className="w-full mx-auto mb-6 px-2 flex flex-col items-center justify-center text-center">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900">Best Snacks In Your Neighborhood</h1>
+          <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900">Best Snacks In Your Neighborhood</h1>
           <p className="text-gray-600 mt-3 text-lg md:text-xl">Handpicked treats and trending flavors curated just for you.</p>
         </div>
   <div className="relative w-full h-[500px] md:h-[500px] overflow-hidden shadow-xl mx-auto ">
@@ -74,7 +74,7 @@ const Hero = () => {
           <div className="absolute inset-0 flex items-end justify-center pb-16 z-20">
               <div className="container mx-auto px-8 md:px-12 text-center">
               <div className="max-w-2xl mx-auto text-center">
-                <h2 className="text-5xl md:text-6xl font-bold text-white mb-3">{slide.title}</h2>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-3">{slide.title}</h2>
                 <p className="text-white text-xl md:text-2xl mb-8">{slide.description}</p>
                   <button className="bg-white text-black hover:bg-black hover:text-white transition-all duration-300 px-8 py-3 font-medium rounded-lg shadow-lg hover:shadow-xl">
                   SHOP NOW

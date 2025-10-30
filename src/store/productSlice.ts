@@ -22,17 +22,7 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-export const fetchProductsByCategory = createAsyncThunk(
-  'products/fetchProductsByCategory',
-  async (category: string, { rejectWithValue }) => {
-    try {
-      const products = await ProductService.getProductsByCategory(category);
-      return products;
-    } catch (error) {
-      return rejectWithValue(error instanceof Error ? error.message : 'Failed to fetch products by category');
-    }
-  }
-);
+// Category feature removed
 
 export const searchProducts = createAsyncThunk(
   'products/searchProducts',
@@ -89,20 +79,7 @@ const productSlice = createSlice({
         state.error = action.payload as string;
       })
       
-      // Fetch products by category
-      .addCase(fetchProductsByCategory.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchProductsByCategory.fulfilled, (state, action) => {
-        state.loading = false;
-        state.products = action.payload;
-        state.error = null;
-      })
-      .addCase(fetchProductsByCategory.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
-      })
+      // Category feature removed
       
       // Search products
       .addCase(searchProducts.pending, (state) => {

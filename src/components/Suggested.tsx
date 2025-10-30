@@ -2,13 +2,13 @@
 import { useNavigate } from 'react-router-dom'
 import { useFeaturedProducts } from '../hooks/useProducts'
 
-const NewArrivals = () => {
+const Suggested = () => {
   const navigate = useNavigate();
   const { products, loading, error } = useFeaturedProducts(4);
 
   if (loading) {
     return (
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white border-b border-black/20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="text-sm font-medium text-gray-500 tracking-widest uppercase">Suggested For You</span>
@@ -25,7 +25,7 @@ const NewArrivals = () => {
 
   if (error) {
     return (
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white border-b border-black/20">
         <div className="container mx-auto px-4">
           <div className="text-center">
             <p className="text-red-600">Error loading products: {error}</p>
@@ -36,7 +36,7 @@ const NewArrivals = () => {
   }
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white border-b border-black/20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-sm font-medium text-gray-500 tracking-widest uppercase">Suggested For You</span>
@@ -59,9 +59,9 @@ const NewArrivals = () => {
                   className="w-full h-[300px] object-cover"
                 />
               </div>
-              <div className="flex gap-1 mb-2">
+              {/* <div className="flex gap-1 mb-2">
                 <span className="text-xs bg-gray-100 px-2 py-1 rounded">{product.category}</span>
-              </div>
+              </div> */}
               <h3 className="font-medium text-lg">{product.name}</h3>
               <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>
               <p className="text-lg font-bold mt-1">₹{product.price.toLocaleString()}</p>
@@ -79,4 +79,4 @@ const NewArrivals = () => {
   )
 }
 
-export default NewArrivals
+export default Suggested

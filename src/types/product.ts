@@ -4,7 +4,6 @@ export interface Product {
   name: string;
   price: number;
   description: string;
-  category: string;
   imageUrl?: string; // Keep for backward compatibility
   images?: string[]; // S3 URLs for multiple images
   imageKeys?: string[]; // S3 keys for image management (admin use)
@@ -18,13 +17,5 @@ export interface ProductState {
   error: string | null;
 }
 
-export const CATEGORIES = [
-  'Sneakers',
-  'Boots',
-  'Sandals',
-  'Formal Shoes',
-  'Athletic Shoes',
-  'Casual Shoes',
-] as const;
+// Categories removed
 
-// Sizes removed from the product model

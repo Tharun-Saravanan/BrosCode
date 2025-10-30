@@ -94,8 +94,7 @@ const ProductDetail: React.FC = () => {
         name: product.name,
         price: product.price,
         imageUrl,
-        quantity: 1,
-        category: product.category
+        quantity: 1
       });
 
       // Show success message
@@ -167,11 +166,11 @@ const ProductDetail: React.FC = () => {
               alt={product.name}
               className="w-full h-full object-cover"
             />
-            {isZoomed && (
+            {/* {isZoomed && (
               <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-sm">
                 Hover to zoom
               </div>
-            )}
+            )} */}
           </div>
 
           {/* Enhanced Thumbnail Gallery - Always visible and larger */}
@@ -217,11 +216,6 @@ const ProductDetail: React.FC = () => {
 
           {/* Product Info */}
           <div>
-            <div className="mb-2">
-              <span className="text-sm bg-gray-100 px-3 py-1 rounded-full text-gray-700">
-                {product.category}
-              </span>
-            </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-4">{product.name}</h1>
             <p className="text-xl font-bold text-gray-900 mb-6">₹{product.price.toLocaleString()}</p>
           </div>
@@ -232,30 +226,6 @@ const ProductDetail: React.FC = () => {
             <p className="text-gray-600 leading-relaxed">{product.description}</p>
           </div>
 
-          {/* Sizes */}
-          {/* <div>
-            <h3 className="text-lg font-semibold mb-3">
-              Available Sizes {selectedSize && <span className="text-sm font-normal text-gray-600">(Selected: {selectedSize})</span>}
-            </h3>
-            <div className="flex flex-wrap gap-3">
-              {product.sizes.map((size) => (
-                <button
-                  key={size}
-                  onClick={() => handleSizeSelect(size)}
-                  className={`px-4 py-2 border rounded-lg transition-colors ${
-                    selectedSize === size
-                      ? 'border-black bg-black text-white'
-                      : 'border-gray-300 hover:border-black hover:bg-black hover:text-white'
-                  }`}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-            {!selectedSize && (
-              <p className="text-sm text-gray-500 mt-2">Please select a size</p>
-            )}
-          </div> */}
 
           {/* Add to Cart */}
           <div className="space-y-4">
@@ -291,10 +261,10 @@ const ProductDetail: React.FC = () => {
                 <span className="font-medium">✓</span>
                 <span className="ml-2">Free shipping on orders above ₹1000</span>
               </div>
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <span className="font-medium">✓</span>
                 <span className="ml-2">3 days return policy</span>
-              </div>
+              </div> */}
               <div className="flex items-center">
                 <span className="font-medium">✓</span>
                 <span className="ml-2">100% secure payment</span>
@@ -305,7 +275,7 @@ const ProductDetail: React.FC = () => {
       </div>
 
       {/* Zoom Box Overlay - Positioned next to the main image */}
-      {isZoomed && (
+      {/* {isZoomed && (
         <div className="hidden lg:block absolute top-8 left-1/2 ml-8 w-72 h-72 xl:w-80 xl:h-80 bg-white rounded-xl overflow-hidden border-2 border-gray-200 shadow-2xl z-50 transition-all duration-300 animate-in fade-in slide-in-from-left-4">
           <div
             className="w-full h-full bg-cover bg-no-repeat"
@@ -319,7 +289,7 @@ const ProductDetail: React.FC = () => {
             🔍 Zoomed View
           </div>
         </div>
-      )}
+      )} */}
 
 
     </div>

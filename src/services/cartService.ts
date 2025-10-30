@@ -129,8 +129,7 @@ export class CartService {
         name: payload.name,
         price: payload.price,
         imageUrl: payload.imageUrl,
-        quantity: payload.quantity || 1,
-        category: payload.category
+        quantity: payload.quantity || 1
       };
       return [...items, newItem];
     }

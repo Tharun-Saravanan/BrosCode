@@ -7,7 +7,7 @@ export const sampleProducts: Product[] = [
     name: 'Classic White Sneakers',
     price: 89.99,
     description: 'Comfortable white sneakers perfect for everyday wear. Made with premium materials and modern design.',
-    category: 'Sneakers',
+    
     imageUrl: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400',
     images: [
       'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800',
@@ -24,7 +24,7 @@ export const sampleProducts: Product[] = [
     name: 'Black Running Shoes',
     price: 129.99,
     description: 'High-performance running shoes with advanced cushioning and breathable mesh upper.',
-    category: 'Athletic Shoes',
+    
     imageUrl: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=400',
     images: [
       'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=800',
@@ -40,7 +40,7 @@ export const sampleProducts: Product[] = [
     name: 'Brown Leather Boots',
     price: 199.99,
     description: 'Premium leather boots with durable construction. Perfect for both casual and formal occasions.',
-    category: 'Boots',
+    
     imageUrl: 'https://images.unsplash.com/photo-1551107696-a4b0c5a0d9a2?w=400',
     createdAt: new Date('2024-01-13').toISOString(),
     updatedAt: new Date('2024-01-13').toISOString(),
@@ -51,7 +51,6 @@ export const sampleProducts: Product[] = [
     name: 'Summer Sandals',
     price: 59.99,
     description: 'Lightweight and comfortable sandals perfect for summer activities and beach walks.',
-    category: 'Sandals',
     imageUrl: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400',
     createdAt: new Date('2024-01-12').toISOString(),
     updatedAt: new Date('2024-01-12').toISOString(),
@@ -62,7 +61,6 @@ export const sampleProducts: Product[] = [
     name: 'Formal Oxford Shoes',
     price: 159.99,
     description: 'Classic oxford shoes crafted from genuine leather. Essential for business and formal events.',
-    category: 'Formal Shoes',
     imageUrl: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400',
     createdAt: new Date('2024-01-11').toISOString(),
     updatedAt: new Date('2024-01-11').toISOString(),

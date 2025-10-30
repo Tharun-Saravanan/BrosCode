@@ -6,7 +6,6 @@ const AllProducts = () => {
   const navigate = useNavigate();
   const { products, loading, error } = useProducts();
   const [query, setQuery] = useState('');
-  const [category, setCategory] = useState('All');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [sortBy, setSortBy] = useState('relevance');
@@ -15,14 +14,6 @@ const AllProducts = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const categories = useMemo(() => {
-    const set = new Set<string>();
-    products.forEach(p => {
-      if (p.category) set.add(p.category);
-    });
-    return ['All', ...Array.from(set).sort()];
-  }, [products]);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -33,10 +24,9 @@ const AllProducts = () => {
       const matchesQuery = q
         ? p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)
         : true;
-      const matchesCategory = category === 'All' ? true : p.category === category;
       const price = typeof p.price === 'number' ? p.price : Number(p.price);
       const matchesPrice = price >= min && price <= max;
-      return matchesQuery && matchesCategory && matchesPrice;
+      return matchesQuery && matchesPrice;
     });
 
     if (sortBy === 'price-asc') {
@@ -48,7 +38,7 @@ const AllProducts = () => {
     }
 
     return list;
-  }, [products, query, category, minPrice, maxPrice, sortBy]);
+  }, [products, query, minPrice, maxPrice, sortBy]);
 
   if (loading) {
     return (
@@ -90,15 +80,6 @@ const AllProducts = () => {
             className="flex-1 min-w-[200px] border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-black"
           />
           <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="w-44 border border-gray-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-black"
-          >
-            {categories.map(c => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
-          <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             className="w-44 border border-gray-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-black"
@@ -127,7 +108,7 @@ const AllProducts = () => {
           <div className="ml-auto flex items-center gap-3 text-sm text-gray-600">
             <span>{filtered.length} items</span>
             <button
-              onClick={() => { setQuery(''); setCategory('All'); setMinPrice(''); setMaxPrice(''); setSortBy('relevance'); }}
+              onClick={() => { setQuery(''); setMinPrice(''); setMaxPrice(''); setSortBy('relevance'); }}
               className="underline"
             >
               Reset
@@ -154,7 +135,6 @@ const AllProducts = () => {
                   alt={product.name}
                   className="w-full h-80 object-cover rounded-lg"
                 />
-                <div className="absolute top-0 right-0 bg-black text-white text-xs px-3 py-1">{product.category}</div>
               </div>
               <h3 className="font-medium">{product.name}</h3>
               <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>
@@ -162,7 +142,7 @@ const AllProducts = () => {
             </div>
           ))}
         </div>
-      )}
+      )}  
     </div>
   );
 };

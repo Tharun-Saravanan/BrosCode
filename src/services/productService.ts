@@ -90,16 +90,7 @@ export class ProductService {
     }
   }
 
-  // Get products by category
-  static async getProductsByCategory(category: string): Promise<Product[]> {
-    try {
-      const products = await this.getAllProducts();
-      return products.filter(product => product.category === category);
-    } catch (error) {
-      console.error('Error fetching products by category:', error);
-      throw new Error('Failed to fetch products by category');
-    }
-  }
+  // Category feature removed
 
   // Search products
   static async searchProducts(searchTerm: string): Promise<Product[]> {
@@ -107,10 +98,8 @@ export class ProductService {
       const products = await this.getAllProducts();
       const lowercaseSearch = searchTerm.toLowerCase();
 
-      return products.filter(product =>
-        product.name.toLowerCase().includes(lowercaseSearch) ||
-        product.description.toLowerCase().includes(lowercaseSearch) ||
-        product.category.toLowerCase().includes(lowercaseSearch)
+      return products.filter(product => product.name.toLowerCase().includes(lowercaseSearch) ||
+        product.description.toLowerCase().includes(lowercaseSearch)
       );
     } catch (error) {
       console.error('Error searching products:', error);

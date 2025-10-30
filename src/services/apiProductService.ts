@@ -34,19 +34,8 @@ export class ApiProductService {
   }
 
   /**
-   * Get products by category from API
+   * Category feature removed
    */
-  static async getProductsByCategory(category: string): Promise<Product[]> {
-    try {
-      console.log('🌐 Fetching products by category from API:', category);
-      const products = await ApiClient.get<Product[]>(`/products/category/${category}`);
-      console.log('✅ Fetched', products?.length || 0, 'products by category from API');
-      return products || [];
-    } catch (error: any) {
-      console.error('❌ Error fetching products by category from API:', error);
-      throw new Error(`Failed to fetch products by category: ${error.message}`);
-    }
-  }
 
   /**
    * Create a new product (admin only)

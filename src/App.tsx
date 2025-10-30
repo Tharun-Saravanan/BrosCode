@@ -12,11 +12,10 @@ import Footer from './components/Footer'
 import CartInitializer from './components/CartInitializer'
 import Cart from './components/Cart'
 import Home from './pages/Home'
-import NewArrivalsPage from './pages/NewArrivals'
+import SuggestedPage from './pages/SuggestedPage'
 import BestSellersPage from './pages/BestSellers'
-import ShoesPage from './pages/Shoes'
 
-import SandalsPage from './pages/AllProducts'
+import AllProducts from './pages/AllProducts'
 
 import SignInPage from './pages/SignIn'
 import SignUpPage from './pages/SignUp'
@@ -65,10 +64,10 @@ function App() {
           <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/collections/new-arrivals" element={<NewArrivalsPage />} />
+          <Route path="/collections/suggested" element={<SuggestedPage />} />
           <Route path="/collections/best-sellers" element={<BestSellersPage />} />
-          <Route path="/collections/shoes" element={<ShoesPage />} />
-          <Route path="/collections/sandals" element={<SandalsPage />} />
+
+          <Route path="/collections/allproducts" element={<AllProducts />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />

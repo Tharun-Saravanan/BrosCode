@@ -79,7 +79,7 @@ const Header = () => {
                 </button>
 
                 <nav className='hidden md:flex gap-8'>
-                    <Link to="/collections/new-arrivals" className='font-medium text-sm tracking-wide hover:text-gray-900 relative group uppercase'>
+                    <Link to="/collections/suggested" className='font-medium text-sm tracking-wide hover:text-gray-900 relative group uppercase'>
                         Suggested For You
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                     </Link>
@@ -88,7 +88,7 @@ const Header = () => {
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                     </Link>
 
-                    <Link to="/collections/sandals" className='font-medium text-sm tracking-wide hover:text-gray-900 relative group uppercase'>
+                    <Link to="/collections/allproducts" className='font-medium text-sm tracking-wide hover:text-gray-900 relative group uppercase'>
                         All Products
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                     </Link>
