@@ -4,7 +4,6 @@ export interface Product {
   price: number;
   description: string;
   category: string;
-  sizes: string[];
   images?: string[];
   imageKeys?: string[];
   createdAt: string;
@@ -17,7 +16,6 @@ export interface CartItem {
   name: string;
   price: number;
   imageUrl: string;
-  size: string;
   quantity: number;
   category: string;
 }

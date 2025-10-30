@@ -17,7 +17,6 @@ const ProductDetail: React.FC = () => {
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
-  const [selectedSize, setSelectedSize] = useState<string>('');
   const [addToCartSuccess, setAddToCartSuccess] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -65,18 +64,10 @@ const ProductDetail: React.FC = () => {
     }, 100);
   };
 
-  const handleSizeSelect = (size: string) => {
-    setSelectedSize(size);
-  };
+  
 
   const handleAddToCart = async () => {
     if (!product) return;
-
-    // Check if size is selected
-    if (!selectedSize) {
-      alert('Please select a size before adding to cart');
-      return;
-    }
 
     // If user is not signed in, redirect to login page
     if (!currentUser) {
@@ -91,7 +82,7 @@ const ProductDetail: React.FC = () => {
 
 
   const addToCartWithAuth = async () => {
-    if (!product || !selectedSize) return;
+    if (!product) return;
 
     try {
       const imageUrl = product.images && product.images.length > 0
@@ -103,7 +94,6 @@ const ProductDetail: React.FC = () => {
         name: product.name,
         price: product.price,
         imageUrl,
-        size: selectedSize,
         quantity: 1,
         category: product.category
       });
@@ -120,7 +110,7 @@ const ProductDetail: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center mt-20">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
       </div>
     );
@@ -128,7 +118,7 @@ const ProductDetail: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center mt-20">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Error Loading Product</h2>
           <p className="text-gray-600 mb-6">{error}</p>
@@ -145,7 +135,7 @@ const ProductDetail: React.FC = () => {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center mt-20">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h2>
           <p className="text-gray-600 mb-6">The product you're looking for doesn't exist.</p>
@@ -161,7 +151,7 @@ const ProductDetail: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 relative">
+    <div className="container mx-auto px-4 py-8 relative mt-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Product Image Gallery */}
         <div className="space-y-4">
@@ -243,7 +233,7 @@ const ProductDetail: React.FC = () => {
           </div>
 
           {/* Sizes */}
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-3">
               Available Sizes {selectedSize && <span className="text-sm font-normal text-gray-600">(Selected: {selectedSize})</span>}
             </h3>
@@ -265,7 +255,7 @@ const ProductDetail: React.FC = () => {
             {!selectedSize && (
               <p className="text-sm text-gray-500 mt-2">Please select a size</p>
             )}
-          </div>
+          </div> */}
 
           {/* Add to Cart */}
           <div className="space-y-4">
@@ -281,9 +271,7 @@ const ProductDetail: React.FC = () => {
               className={`w-full py-4 px-6 font-medium transition-colors ${
                 cartLoading
                   ? 'bg-gray-400 text-white cursor-not-allowed'
-                  : selectedSize
-                    ? 'bg-black text-white hover:bg-gray-800'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  : 'bg-black text-white hover:bg-gray-800'
               }`}
             >
               {cartLoading ? 'ADDING...' : 'ADD TO CART'}
@@ -291,7 +279,6 @@ const ProductDetail: React.FC = () => {
 
             <button
               className="w-full border-2 border-black text-black py-4 px-6 font-medium hover:bg-black hover:text-white transition-colors"
-              disabled={!selectedSize}
             >
               BUY IT NOW
             </button>

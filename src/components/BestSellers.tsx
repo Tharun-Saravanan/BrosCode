@@ -70,9 +70,6 @@ const BestSellers = () => {
                 <div className="flex justify-between items-center mt-3">
                   <p className="text-lg font-bold">₹{product.price.toLocaleString()}</p>
                 </div>
-                <div className="mt-2">
-                  <p className="text-xs text-gray-500">Available sizes: {product.sizes.join(', ')}</p>
-                </div>
               </div>
             </div>
           ))}

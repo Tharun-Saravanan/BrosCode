@@ -67,7 +67,6 @@ const BestSellers = () => {
               <p className="text-gray-700 font-semibold mt-2">₹{product.price.toLocaleString()}</p>
               <div className="mt-1">
                 <p className="text-xs text-gray-500">Category: {product.category}</p>
-                <p className="text-xs text-gray-500">Sizes: {product.sizes.slice(0, 3).join(', ')}{product.sizes.length > 3 ? '...' : ''}</p>
               </div>
             </div>
           ))}

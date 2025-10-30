@@ -39,7 +39,6 @@ export const handler = async (
       'name',
       'price',
       'imageUrl',
-      'size',
       'category'
     ]);
 
@@ -64,9 +63,9 @@ export const handler = async (
     const timestamp = getTimestamp();
     let items: CartItem[] = cart?.items || [];
 
-    // Check if item with same productId and size already exists
+    // Check if item with same productId already exists
     const existingItemIndex = items.findIndex(
-      item => item.productId === body.productId && item.size === body.size
+      item => item.productId === body.productId
     );
 
     if (existingItemIndex !== -1) {
@@ -80,7 +79,6 @@ export const handler = async (
         name: body.name!,
         price: body.price!,
         imageUrl: body.imageUrl!,
-        size: body.size!,
         quantity: body.quantity || 1,
         category: body.category!,
       };

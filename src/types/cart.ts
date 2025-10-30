@@ -4,7 +4,6 @@ export interface CartItem {
   name: string;
   price: number;
   imageUrl: string;
-  size: string;
   quantity: number;
   category: string;
 }
@@ -23,7 +22,6 @@ export interface AddToCartPayload {
   name: string;
   price: number;
   imageUrl: string;
-  size: string;
   quantity?: number;
   category: string;
 }

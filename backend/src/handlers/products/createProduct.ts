@@ -1,4 +1,4 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import type { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { PutCommand } from '@aws-sdk/lib-dynamodb';
 import { v4 as uuidv4 } from 'uuid';
 import { dynamoDbDocClient, TABLES } from '../../config/dynamodb';
@@ -31,8 +31,7 @@ export const handler = async (
       'name',
       'price',
       'description',
-      'category',
-      'sizes'
+      'category'
     ]);
 
     if (!isValid) {
@@ -51,7 +50,6 @@ export const handler = async (
       price: body.price!,
       description: body.description!,
       category: body.category!,
-      sizes: body.sizes!,
       images: body.images || [],
       imageKeys: body.imageKeys || [],
       createdAt: timestamp,

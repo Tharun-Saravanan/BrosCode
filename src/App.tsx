@@ -15,7 +15,9 @@ import Home from './pages/Home'
 import NewArrivalsPage from './pages/NewArrivals'
 import BestSellersPage from './pages/BestSellers'
 import ShoesPage from './pages/Shoes'
-import SandalsPage from './pages/Sandals'
+
+import SandalsPage from './pages/AllProducts'
+
 import SignInPage from './pages/SignIn'
 import SignUpPage from './pages/SignUp'
 import ProfilePage from './pages/Profile'

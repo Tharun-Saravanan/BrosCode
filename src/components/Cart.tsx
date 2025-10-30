@@ -68,7 +68,6 @@ const Cart: React.FC = () => {
                   />
                   <div className="flex-1">
                     <h3 className="font-medium text-sm">{item.name}</h3>
-                    <p className="text-gray-500 text-xs">Size: {item.size}</p>
                     <p className="text-gray-900 font-semibold text-sm">
                       {formatPriceWithCurrency(item.price)}
                     </p>

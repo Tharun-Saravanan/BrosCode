@@ -65,9 +65,6 @@ const NewArrivals = () => {
               <h3 className="font-medium text-lg">{product.name}</h3>
               <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>
               <p className="text-lg font-bold mt-1">₹{product.price.toLocaleString()}</p>
-              <div className="mt-1">
-                <p className="text-xs text-gray-500">Sizes: {product.sizes.slice(0, 3).join(', ')}{product.sizes.length > 3 ? '...' : ''}</p>
-              </div>
             </div>
           ))}
         </div>

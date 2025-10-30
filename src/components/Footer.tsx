@@ -1,15 +1,14 @@
 
-
 const Footer = () => {
   return (
     <footer className="bg-black text-white pt-20 pb-10">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-bold mb-6">SIBILING SHOES</h3>
+            <h3 className="text-6xl font-bold mb-6">QuickSnack</h3>
             <p className="text-gray-300 mb-8 pr-0 lg:pr-12">
-              SIBILING SHOES is where timeless elegance meets impeccable craftsmanship.
-              Our handcrafted leather products are designed for the modern gentleman who appreciates quality, comfort, and style.
+              Discover delicious snacks crafted with high-quality ingredients and irresistible flavors.
+              From everyday munchies to premium treats, we bring you great taste, freshness, and convenience.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition-colors duration-300">
@@ -51,8 +50,8 @@ const Footer = () => {
             <ul className="space-y-4">
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Contact Us</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">FAQs</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Size Guide</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Care Instructions</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Ingredients & Allergens</a></li>
+              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Storage & Freshness</a></li>
               <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Track Order</a></li>
             </ul>
           </div>
@@ -60,11 +59,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-6 uppercase tracking-wide">Shop</h4>
             <ul className="space-y-4">
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">New Arrivals</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Best Sellers</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Formal Shoes</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Casual Shoes</a></li>
-              <li><a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">Accessories</a></li>
+              <li><a href="/" className="text-gray-300 hover:text-white transition-colors duration-200">Suggested for you</a></li>
+              <li><a href="/collections/best-sellers" className="text-gray-300 hover:text-white transition-colors duration-200">Best Sellers</a></li>
+              <li><a href="/collections/sandals" className="text-gray-300 hover:text-white transition-colors duration-200">All Products</a></li>
             </ul>
           </div>
         </div>
@@ -72,7 +69,7 @@ const Footer = () => {
         <div className="py-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 mb-4 md:mb-0">
-              © {new Date().getFullYear()} SIBILING SHOES. All Rights Reserved.
+              &copy; {new Date().getFullYear()} SIBILING SHOES. All Rights Reserved.
             </p>
 
             <div className="flex items-center gap-6">

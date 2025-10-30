@@ -104,13 +104,13 @@ export class CartService {
   }
 
   // Generate unique cart item ID
-  static generateCartItemId(productId: string, size: string): string {
-    return `${productId}_${size}`;
+  static generateCartItemId(productId: string): string {
+    return `${productId}`;
   }
 
   // Add item to cart
   static addToCart(items: CartItem[], payload: AddToCartPayload): CartItem[] {
-    const cartItemId = this.generateCartItemId(payload.productId, payload.size);
+    const cartItemId = this.generateCartItemId(payload.productId);
     const existingItemIndex = items.findIndex(item => item.id === cartItemId);
 
     if (existingItemIndex >= 0) {
@@ -129,7 +129,6 @@ export class CartService {
         name: payload.name,
         price: payload.price,
         imageUrl: payload.imageUrl,
-        size: payload.size,
         quantity: payload.quantity || 1,
         category: payload.category
       };
