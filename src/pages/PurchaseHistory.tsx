@@ -19,8 +19,17 @@ const PurchaseHistory: React.FC = () => {
 
       try {
         setLoading(true);
-        const history = await ApiPurchaseService.getPurchaseHistory(currentUser.uid);
-        setPurchases(history);
+        const response = await ApiPurchaseService.getPurchaseHistory(currentUser.uid);
+        console.log('Purchase history response:', response);
+        // Handle both response formats - response might be {purchases: []} or just the data object
+        let purchaseList: Purchase[] = [];
+        if (Array.isArray(response)) {
+          purchaseList = response;
+        } else if (response && typeof response === 'object') {
+          purchaseList = response.purchases || [];
+        }
+        console.log('Parsed purchases:', purchaseList);
+        setPurchases(purchaseList);
       } catch (err: any) {
         setError(err.message || 'Failed to load purchase history');
         console.error('Error fetching purchase history:', err);

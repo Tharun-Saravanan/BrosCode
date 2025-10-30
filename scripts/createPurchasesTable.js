@@ -1,12 +1,6 @@
-const { DynamoDBClient } = require('@aws-sdk/client-dynamodb');
-const {
-  DynamoDBDocumentClient,
-  CreateTableCommand,
-  DescribeTableCommand,
-} = require('@aws-sdk/lib-dynamodb');
+import { DynamoDBClient, CreateTableCommand, DescribeTableCommand } from '@aws-sdk/client-dynamodb';
 
 const client = new DynamoDBClient({ region: 'us-east-2' });
-const docClient = DynamoDBDocumentClient.from(client);
 
 const TABLE_NAME = 'sibilingshoe-purchases';
 
@@ -15,7 +9,7 @@ async function createPurchasesTable() {
     // Check if table already exists
     try {
       const describeCommand = new DescribeTableCommand({ TableName: TABLE_NAME });
-      await docClient.send(describeCommand);
+      await client.send(describeCommand);
       console.log(`✅ Table "${TABLE_NAME}" already exists!`);
       return;
     } catch (error) {
@@ -52,7 +46,7 @@ async function createPurchasesTable() {
     };
 
     const command = new CreateTableCommand(params);
-    await docClient.send(command);
+    await client.send(command);
 
     console.log(`✅ Table "${TABLE_NAME}" created successfully!`);
     console.log(`
