@@ -51,7 +51,7 @@ const TrendingSnacks = () => {
             <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-3">TRENDING SNACKS</h2>
             <div className="w-24 h-1 bg-black mx-auto md:mx-0"></div>
             <p className="text-gray-600 mt-6">Discover our curated selection of premium snacks, from artisanal chocolates to gourmet nuts, perfect for every craving.</p>
-            <button className="mt-6 inline-block border-2 border-black px-8 py-3 font-medium hover:bg-black hover:text-white transition-colors duration-300 uppercase tracking-wider">
+            <button onClick={() => navigate('/collections/best-sellers')} className="mt-6 inline-block border-2 border-black px-8 py-3 font-medium hover:bg-black hover:text-white transition-colors duration-300 uppercase tracking-wider">
               Explore Treats
             </button>
           </div>
@@ -65,7 +65,7 @@ const TrendingSnacks = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map(product => (
             <div
               key={product.id}
@@ -110,7 +110,7 @@ const TrendingSnacks = () => {
               <p className="text-lg font-bold">{product.price}</p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   )

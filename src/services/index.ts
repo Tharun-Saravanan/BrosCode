@@ -7,3 +7,4 @@ export { ApiProductService } from './apiProductService';
 export { ApiCartService } from './apiCartService';
 export { ApiLikedService } from './apiLikedService';
 export { CartService } from './cartService';
+export { RecommendationService } from './recommendationService';

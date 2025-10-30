@@ -1,14 +1,43 @@
-
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useFeaturedProducts } from '../hooks/useProducts'
+import { RecommendationService } from '../services'
+import { useAuth } from '../contexts/AuthContext'
+import type { Product } from '../types/product'
 
 const Suggested = () => {
   const navigate = useNavigate();
-  const { products, loading, error } = useFeaturedProducts(4);
+  const { currentUser } = useAuth();
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let isMounted = true;
+    const userId = currentUser?.uid || 'test-user-123';
+    setLoading(true);
+    setError(null);
+
+    RecommendationService.getUserRecommendations(userId, 4)
+      .then((recs) => {
+        if (!isMounted) return;
+        setProducts(recs);
+        setLoading(false);
+      })
+      .catch((e) => {
+        if (!isMounted) return;
+        console.error('Failed to load recommendations', e);
+        setError('Failed to load recommendations');
+        setLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [currentUser?.uid]);
 
   if (loading) {
     return (
-      <section className="py-20 bg-white border-b border-black/20">
+      <section className="py-20 bg-white border-b border-black/20 mt-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <span className="text-sm font-medium text-gray-500 tracking-widest uppercase">Suggested For You</span>
@@ -25,10 +54,10 @@ const Suggested = () => {
 
   if (error) {
     return (
-      <section className="py-20 bg-white border-b border-black/20">
+      <section className="py-20 bg-white border-b border-black/20 mt-20 ">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <p className="text-red-600">Error loading products: {error}</p>
+            <p className="text-red-600">Error loading recommendations: {error}</p>
           </div>
         </div>
       </section>
@@ -36,7 +65,7 @@ const Suggested = () => {
   }
 
   return (
-    <section className="py-20 bg-white border-b border-black/20">
+    <section className="py-20 bg-white border-b border-black/20 mt-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="text-sm font-medium text-gray-500 tracking-widest uppercase">Suggested For You</span>
@@ -70,7 +99,7 @@ const Suggested = () => {
         </div>
 
         <div className="text-center mt-12">
-          <button className="inline-block border-2 border-black px-8 py-3 font-medium hover:bg-black hover:text-white transition-colors duration-300 uppercase tracking-wider">
+          <button onClick={() => navigate('/collections/suggested')} className="inline-block border-2 border-black px-8 py-3 font-medium hover:bg-black hover:text-white transition-colors duration-300 uppercase tracking-wider">
             View All Collection
           </button>
         </div>
