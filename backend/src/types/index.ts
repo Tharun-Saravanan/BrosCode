@@ -68,3 +68,47 @@ export interface SuccessResponse<T = any> {
   message: string;
   data?: T;
 }
+
+export interface PurchaseItem {
+  productId: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+  quantity: number;
+  category: string;
+}
+
+export interface PaymentDetails {
+  method: 'card' | 'upi' | 'netbanking' | 'cod';
+  transactionId?: string;
+  status?: 'SUCCESS' | 'FAILED' | 'PENDING';
+  cardNumber?: string;
+  upiId?: string;
+  bankName?: string;
+}
+
+export interface ShippingAddress {
+  fullName: string;
+  addressLine1: string;
+  addressLine2?: string;
+  city: string;
+  state: string;
+  pincode: string;
+  phoneNumber: string;
+}
+
+export interface Purchase {
+  purchaseId: string;
+  userId: string;
+  items: PurchaseItem[];
+  totalItems: number;
+  totalAmount: number;
+  paymentDetails: PaymentDetails;
+  shippingAddress: ShippingAddress;
+  orderStatus: 'CONFIRMED' | 'PROCESSING' | 'SHIPPED' | 'DELIVERED' | 'CANCELLED';
+  deliveryStatus: 'PROCESSING' | 'SHIPPED' | 'OUT_FOR_DELIVERY' | 'DELIVERED';
+  estimatedDelivery: string;
+  purchaseDate: string;
+  createdAt: string;
+  updatedAt: string;
+}

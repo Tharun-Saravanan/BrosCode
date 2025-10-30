@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "setup:cart-table": "node scripts/createCartTable.js"
+    "setup:cart-table": "node scripts/createCartTable.js",
+    "setup:purchases-table": "node scripts/createPurchasesTable.js"
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity-provider": "^3.705.0",

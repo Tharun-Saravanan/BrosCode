@@ -130,11 +130,11 @@ const Header = () => {
                                         Profile
                                     </Link>
                                     <Link
-                                        to="/orders"
+                                        to="/purchase-history"
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         onClick={() => setIsUserMenuOpen(false)}
                                     >
-                                        Orders
+                                        Purchase History
                                     </Link>
                                     <button
                                         onClick={() => {
@@ -185,7 +185,7 @@ const Header = () => {
                                     Welcome, {getUserDisplayName()}
                                 </div>
                                 <Link to="/profile" className='font-medium py-2 hover:text-gray-900 border-b border-gray-100 pb-2'>PROFILE</Link>
-                                <Link to="/orders" className='font-medium py-2 hover:text-gray-900 border-b border-gray-100 pb-2'>ORDERS</Link>
+                                <Link to="/purchase-history" className='font-medium py-2 hover:text-gray-900 border-b border-gray-100 pb-2'>PURCHASE HISTORY</Link>
                                 <button
                                     onClick={handleLogout}
                                     className='font-medium py-2 hover:text-gray-900 text-left w-full'

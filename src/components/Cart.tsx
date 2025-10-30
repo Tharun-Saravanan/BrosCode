@@ -1,16 +1,23 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { closeCart } from '../store/cartSlice';
 import { useCart } from '../contexts/CartContext';
 import { formatPriceWithCurrency } from '../utils/priceUtils';
 
 const Cart: React.FC = () => {
+  const navigate = useNavigate();
   const { items, totalItems, totalPrice, isOpen } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
   const { removeFromCart, updateCartItemQuantity } = useCart();
 
   const handleClose = () => {
     dispatch(closeCart());
+  };
+
+  const handleCheckout = () => {
+    dispatch(closeCart());
+    navigate('/checkout');
   };
 
   const handleRemoveItem = async (itemId: string) => {
@@ -108,7 +115,10 @@ const Cart: React.FC = () => {
               <span className="text-lg font-semibold">Total:</span>
               <span className="text-lg font-bold">{formatPriceWithCurrency(totalPrice)}</span>
             </div>
-            <button className="w-full bg-black text-white py-3 px-4 rounded-lg font-medium hover:bg-gray-800 transition-colors">
+            <button 
+              onClick={handleCheckout}
+              className="w-full bg-black text-white py-3 px-4 rounded-lg font-medium hover:bg-gray-800 transition-colors"
+            >
               Checkout
             </button>
             <button 

@@ -12,6 +12,7 @@ provider:
     PRODUCTS_TABLE: sibilingshoe-products
     CARTS_TABLE: sibilingshoe-carts
     LIKED_TABLE: sibilingshoe-liked
+    PURCHASES_TABLE: sibilingshoe-purchases
     REGION: us-east-2
   
   iam:
@@ -29,9 +30,11 @@ provider:
             - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.PRODUCTS_TABLE}"
             - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.CARTS_TABLE}"
             - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.LIKED_TABLE}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.PURCHASES_TABLE}"
             - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.PRODUCTS_TABLE}/index/*"
             - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.CARTS_TABLE}/index/*"
             - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.LIKED_TABLE}/index/*"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.PURCHASES_TABLE}/index/*"
 
 build:
   esbuild:
@@ -280,6 +283,55 @@ functions:
       - http:
           path: liked/{userId}
           method: delete
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  # Purchase APIs
+  createPurchase:
+    handler: src/handlers/purchases/createPurchase.handler
+    events:
+      - http:
+          path: purchases/{userId}
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  getPurchaseHistory:
+    handler: src/handlers/purchases/getPurchaseHistory.handler
+    events:
+      - http:
+          path: purchases/{userId}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  getPurchase:
+    handler: src/handlers/purchases/getPurchase.handler
+    events:
+      - http:
+          path: purchases/order/{purchaseId}
+          method: get
           cors:
             origin: '*'
             headers:

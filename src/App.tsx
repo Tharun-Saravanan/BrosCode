@@ -22,6 +22,9 @@ import SignInPage from './pages/SignIn'
 import SignUpPage from './pages/SignUp'
 import ProfilePage from './pages/Profile'
 import ProductDetail from './pages/ProductDetail'
+import Checkout from './pages/Checkout'
+import OrderSuccess from './pages/OrderSuccess'
+import PurchaseHistory from './pages/PurchaseHistory'
 import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
@@ -69,6 +72,21 @@ function App() {
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/checkout" element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          } />
+          <Route path="/order-success" element={
+            <ProtectedRoute>
+              <OrderSuccess />
+            </ProtectedRoute>
+          } />
+          <Route path="/purchase-history" element={
+            <ProtectedRoute>
+              <PurchaseHistory />
+            </ProtectedRoute>
+          } />
           <Route path="/profile" element={
             <ProtectedRoute>
               <ProfilePage />
