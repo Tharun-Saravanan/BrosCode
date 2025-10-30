@@ -1,0 +1,342 @@
+{
+  "info": {
+    "name": "BrosCode Backend API",
+    "description": "Serverless API for BrosCode e-commerce application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
+            }
+          }
+        },
+        {
+          "name": "Get Product by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "product-id-123"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Products by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/category/:category",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", "category", ":category"],
+              "variable": [
+                {
+                  "key": "category",
+                  "value": "Sneakers"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nike Air Max\",\n  \"price\": 129.99,\n  \"description\": \"Comfortable running shoes\",\n  \"category\": \"Sneakers\",\n  \"sizes\": [\"8\", \"9\", \"10\", \"11\"],\n  \"images\": [\"https://example.com/image.jpg\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products",
+              "host": ["{{baseUrl}}"],
+              "path": ["products"]
+            }
+          }
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": 139.99,\n  \"description\": \"Updated description\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/products/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "product-id-123"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/products/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["products", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "product-id-123"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Carts",
+      "item": [
+        {
+          "name": "Get Cart",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carts/:userId",
+              "host": ["{{baseUrl}}"],
+              "path": ["carts", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user123"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add to Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"product-123\",\n  \"name\": \"Nike Air Max\",\n  \"price\": 129.99,\n  \"imageUrl\": \"https://example.com/image.jpg\",\n  \"size\": \"10\",\n  \"quantity\": 1,\n  \"category\": \"Sneakers\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carts/:userId",
+              "host": ["{{baseUrl}}"],
+              "path": ["carts", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user123"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Cart Item Quantity",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"itemId\": \"cart-item-id\",\n  \"quantity\": 3\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/carts/:userId",
+              "host": ["{{baseUrl}}"],
+              "path": ["carts", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user123"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Remove from Cart",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carts/:userId/items/:itemId",
+              "host": ["{{baseUrl}}"],
+              "path": ["carts", ":userId", "items", ":itemId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user123"
+                },
+                {
+                  "key": "itemId",
+                  "value": "cart-item-id"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Clear Cart",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/carts/:userId",
+              "host": ["{{baseUrl}}"],
+              "path": ["carts", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user123"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Liked Products",
+      "item": [
+        {
+          "name": "Get Liked Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/liked/:userId",
+              "host": ["{{baseUrl}}"],
+              "path": ["liked", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user123"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Liked Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"product-123\",\n  \"productName\": \"Nike Air Max\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/liked/:userId",
+              "host": ["{{baseUrl}}"],
+              "path": ["liked", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user123"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Remove Liked Product",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/liked/:userId/products/:productId",
+              "host": ["{{baseUrl}}"],
+              "path": ["liked", ":userId", "products", ":productId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user123"
+                },
+                {
+                  "key": "productId",
+                  "value": "product-123"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Clear Liked Products",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/liked/:userId",
+              "host": ["{{baseUrl}}"],
+              "path": ["liked", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "user123"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://your-api-id.execute-api.us-east-2.amazonaws.com/dev",
+      "type": "string"
+    }
+  ]
+}

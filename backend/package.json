@@ -1,0 +1,36 @@
+{
+  "name": "broscode-backend",
+  "version": "1.0.0",
+  "description": "Serverless backend for BrosCode e-commerce application",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "deploy": "serverless deploy",
+    "deploy:dev": "serverless deploy --stage dev",
+    "deploy:prod": "serverless deploy --stage prod",
+    "local": "serverless offline start",
+    "test": "jest",
+    "lint": "eslint . --ext .ts",
+    "setup:tables": "tsx scripts/setupTables.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.705.0",
+    "@aws-sdk/lib-dynamodb": "^3.705.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "@types/node": "^22.10.2",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.30.1",
+    "@typescript-eslint/parser": "^8.30.1",
+    "esbuild": "^0.24.2",
+    "eslint": "^9.25.0",
+    "serverless": "^4.6.0",
+    "serverless-esbuild": "^1.54.3",
+    "serverless-offline": "^14.4.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.3"
+  }
+}

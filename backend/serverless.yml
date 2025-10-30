@@ -1,0 +1,291 @@
+service: broscode-backend
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-2
+  stage: ${opt:stage, 'dev'}
+  memorySize: 256
+  timeout: 30
+  
+  environment:
+    PRODUCTS_TABLE: sibilingshoe-products
+    CARTS_TABLE: sibilingshoe-carts
+    LIKED_TABLE: sibilingshoe-liked
+    REGION: us-east-2
+  
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.PRODUCTS_TABLE}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.CARTS_TABLE}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.LIKED_TABLE}"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.PRODUCTS_TABLE}/index/*"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.CARTS_TABLE}/index/*"
+            - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.LIKED_TABLE}/index/*"
+
+build:
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    exclude:
+      - '@aws-sdk/*'
+    target: node20
+    platform: node
+
+plugins:
+  - serverless-offline
+
+functions:
+  # Product APIs
+  getAllProducts:
+    handler: src/handlers/products/getAllProducts.handler
+    events:
+      - http:
+          path: products
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  getProduct:
+    handler: src/handlers/products/getProduct.handler
+    events:
+      - http:
+          path: products/{id}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  getProductsByCategory:
+    handler: src/handlers/products/getProductsByCategory.handler
+    events:
+      - http:
+          path: products/category/{category}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  createProduct:
+    handler: src/handlers/products/createProduct.handler
+    events:
+      - http:
+          path: products
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  updateProduct:
+    handler: src/handlers/products/updateProduct.handler
+    events:
+      - http:
+          path: products/{id}
+          method: put
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  deleteProduct:
+    handler: src/handlers/products/deleteProduct.handler
+    events:
+      - http:
+          path: products/{id}
+          method: delete
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  # Cart APIs
+  getCart:
+    handler: src/handlers/carts/getCart.handler
+    events:
+      - http:
+          path: carts/{userId}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  addToCart:
+    handler: src/handlers/carts/addToCart.handler
+    events:
+      - http:
+          path: carts/{userId}
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  updateCart:
+    handler: src/handlers/carts/updateCart.handler
+    events:
+      - http:
+          path: carts/{userId}
+          method: put
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  removeFromCart:
+    handler: src/handlers/carts/removeFromCart.handler
+    events:
+      - http:
+          path: carts/{userId}/items/{itemId}
+          method: delete
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  clearCart:
+    handler: src/handlers/carts/clearCart.handler
+    events:
+      - http:
+          path: carts/{userId}
+          method: delete
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  # Liked Products APIs
+  getLikedProducts:
+    handler: src/handlers/liked/getLikedProducts.handler
+    events:
+      - http:
+          path: liked/{userId}
+          method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  addLikedProduct:
+    handler: src/handlers/liked/addLikedProduct.handler
+    events:
+      - http:
+          path: liked/{userId}
+          method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  removeLikedProduct:
+    handler: src/handlers/liked/removeLikedProduct.handler
+    events:
+      - http:
+          path: liked/{userId}/products/{productId}
+          method: delete
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
+
+  clearLikedProducts:
+    handler: src/handlers/liked/clearLikedProducts.handler
+    events:
+      - http:
+          path: liked/{userId}
+          method: delete
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
