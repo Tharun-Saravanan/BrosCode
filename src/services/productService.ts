@@ -7,7 +7,7 @@ const PRODUCTS_STORAGE_KEY = 'temp_products';
 export class ProductService {
   private static syncSubscriptions: Set<(products: Product[]) => void> = new Set();
   private static lastSyncTime: number = 0;
-  private static syncInterval: number | null = null;
+  private static syncInterval: ReturnType<typeof setInterval> | null = null;
   private static isOnline: boolean = navigator.onLine;
 
   // Initialize service and set up connectivity monitoring
