@@ -19,7 +19,7 @@ const ProductDetail: React.FC = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [addToCartSuccess, setAddToCartSuccess] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<number | null>(null);
 
   const product = products.find(p => (p.products_id === id || p.id === id));
 
