@@ -13,11 +13,11 @@ const NewArrivals = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-gray-50 py-12 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
-            <p className="text-lg text-gray-600">Loading new arrivals...</p>
+            <p className="text-lg text-gray-600">Loading suggested snacks...</p>
           </div>
         </div>
       </div>
@@ -26,10 +26,10 @@ const NewArrivals = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-gray-50 py-12 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-red-600">Error loading new arrivals: {error}</p>
+            <p className="text-red-600">Error loading suggestions: {error}</p>
           </div>
         </div>
       </div>
@@ -37,13 +37,13 @@ const NewArrivals = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-2">New Arrivals</h1>
-      <p className="text-gray-600 mb-8">Our latest collection of premium products</p>
+    <div className="container mx-auto px-4 py-12 mt-20">
+      <h1 className="text-3xl font-bold mb-2">Suggested Snacks for You</h1>
+      <p className="text-gray-600 mb-8">Personalized snack picks curated for you</p>
 
       {products.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">No new arrivals available at the moment.</p>
+          <p className="text-gray-500 text-lg">No suggestions available at the moment.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -14,11 +14,11 @@ const BestSellers = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-gray-50 py-12 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black mx-auto mb-4"></div>
-            <p className="text-lg text-gray-600">Loading best sellers...</p>
+            <p className="text-lg text-gray-600">Loading best-selling snacks...</p>
           </div>
         </div>
       </div>
@@ -27,10 +27,10 @@ const BestSellers = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-gray-50 py-12 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <p className="text-red-600">Error loading best sellers: {error}</p>
+            <p className="text-red-600">Error loading best-selling snacks: {error}</p>
           </div>
         </div>
       </div>
@@ -38,13 +38,13 @@ const BestSellers = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold mb-2">Best Sellers</h1>
-      <p className="text-gray-600 mb-8">Our most popular products loved by customers</p>
+    <div className="container mx-auto px-4 py-12 mt-20">
+      <h1 className="text-3xl font-bold mb-2">Best-Selling Snacks</h1>
+      <p className="text-gray-600 mb-8">Our most popular snacks loved by customers</p>
 
       {products.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-gray-500 text-lg">No best sellers available at the moment.</p>
+          <p className="text-gray-500 text-lg">No best-selling snacks available at the moment.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -60,7 +60,7 @@ const BestSellers = () => {
                   alt={product.name}
                   className="w-full h-80 object-cover rounded-lg"
                 />
-                <div className="absolute top-0 right-0 bg-black text-white text-xs px-3 py-1">BEST SELLER</div>
+                <div className="absolute top-0 right-0 bg-black text-white text-xs px-3 py-1">POPULAR</div>
               </div>
               <h3 className="font-medium">{product.name}</h3>
               <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>

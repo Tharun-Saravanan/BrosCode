@@ -87,12 +87,12 @@ const Header = () => {
                         BEST SELLERS
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                     </Link>
-                    <Link to="/collections/shoes" className='font-medium text-sm tracking-wide hover:text-gray-900 relative group uppercase'>
+                    {/* <Link to="/collections/shoes" className='font-medium text-sm tracking-wide hover:text-gray-900 relative group uppercase'>
                         Crisps
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-                    </Link>
+                    </Link> */}
                     <Link to="/collections/sandals" className='font-medium text-sm tracking-wide hover:text-gray-900 relative group uppercase'>
-                        Sweets
+                        ALL Products    
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
                     </Link>
                 </nav>
