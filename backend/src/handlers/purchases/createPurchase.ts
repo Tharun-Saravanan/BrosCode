@@ -99,14 +99,21 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         method: purchaseData.paymentDetails.method,
         transactionId,
         status: paymentStatus,
-        // Mask sensitive information
-        cardNumber: purchaseData.paymentDetails.cardNumber 
-          ? `****${purchaseData.paymentDetails.cardNumber.slice(-4)}` 
-          : undefined,
-        upiId: purchaseData.paymentDetails.upiId,
-        bankName: purchaseData.paymentDetails.bankName,
+        ...(purchaseData.paymentDetails.cardNumber && {
+          cardNumber: `****${purchaseData.paymentDetails.cardNumber.slice(-4)}`
+        }),
+        ...(purchaseData.paymentDetails.upiId && { upiId: purchaseData.paymentDetails.upiId }),
+        ...(purchaseData.paymentDetails.bankName && { bankName: purchaseData.paymentDetails.bankName }),
       },
-      shippingAddress: purchaseData.shippingAddress,
+      shippingAddress: {
+        fullName: purchaseData.shippingAddress.fullName,
+        addressLine1: purchaseData.shippingAddress.addressLine1,
+        ...(purchaseData.shippingAddress.addressLine2 && { addressLine2: purchaseData.shippingAddress.addressLine2 }),
+        city: purchaseData.shippingAddress.city,
+        state: purchaseData.shippingAddress.state,
+        pincode: purchaseData.shippingAddress.pincode,
+        phoneNumber: purchaseData.shippingAddress.phoneNumber,
+      },
       orderStatus: 'CONFIRMED',
       deliveryStatus: 'PROCESSING',
       estimatedDelivery: getEstimatedDeliveryDate(),
