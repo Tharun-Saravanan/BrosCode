@@ -1,7 +1,8 @@
 import type { Product } from '../types/product';
 
-// Hardcoded AI API base URL
-const RECO_BASE_URL = 'http://3.145.158.194:5000';
+// Use HTTPS endpoint for recommendations to avoid mixed content errors
+// If you haven't set up HTTPS yet, see ai/HTTPS_SETUP_GUIDE.md
+const RECO_BASE_URL = import.meta.env.VITE_RECOMMENDATION_API_URL || 'https://3.145.158.194:5000';
 
 export interface RecommendationItem {
   product_id: string;

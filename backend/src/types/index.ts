@@ -4,6 +4,7 @@ export interface Product {
   price: number;
   description: string;
   category: string;
+  imageUrl?: string; // Main image URL for backward compatibility
   images?: string[];
   imageKeys?: string[];
   createdAt: string;

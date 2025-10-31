@@ -12,7 +12,9 @@
     "local": "serverless offline start",
     "test": "jest",
     "lint": "eslint . --ext .ts",
-    "setup:tables": "tsx scripts/setupTables.ts"
+    "setup:tables": "tsx scripts/setupTables.ts",
+    "add:food-products": "tsx scripts/addFoodProducts.ts",
+    "delete:all-products": "tsx scripts/deleteAllProducts.ts"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.705.0",
