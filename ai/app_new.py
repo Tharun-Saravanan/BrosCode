@@ -12,7 +12,6 @@ from dotenv import load_dotenv
 import requests
 from typing import Dict, List, Any, Optional
 from collections import defaultdict, Counter
-import numpy as np
 
 # Load environment variables
 load_dotenv()
@@ -41,7 +40,14 @@ def fetch_all_products() -> List[Dict[str, Any]]:
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
-        products_cache = response.json()
+        data = response.json()
+        # API returns {message, data} format
+        if isinstance(data, dict) and 'data' in data:
+            products_cache = data['data']
+        elif isinstance(data, list):
+            products_cache = data
+        else:
+            products_cache = []
         return products_cache
     except Exception as e:
         print(f"Error fetching products: {e}")
@@ -118,7 +124,7 @@ def get_collaborative_recommendations(
             calculate_product_similarity(product, interacted_prod)
             for interacted_prod in interacted_products
         ]
-        avg_similarity = np.mean(similarities) if similarities else 0
+        avg_similarity = sum(similarities) / len(similarities) if similarities else 0
         
         # Boost score for items in cart (higher intent)
         if any(item.get('productId') == product.get('products_id') for item in user_context.get('cart_items', [])):
