@@ -3,44 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 const TrendingSnacks = () => {
   const navigate = useNavigate();
-  const products = [
-    {
-      id: 1,
-      name: "Premium Mixed Nuts",
-      price: "₹399.00",
-      rating: 4.9,
-      reviews: 25,
-      image: "https://images.pexels.com/photos/1295572/pexels-photo-1295572.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      varieties: ["Salted", "Honey Roasted"]
-    },
-    {
-      id: 2,
-      name: "Artisanal Chocolate Truffles",
-      price: "₹595.00",
-      rating: 4.8,
-      reviews: 32,
-      image: "https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      varieties: ["Dark", "Milk", "White"]
-    },
-    {
-      id: 3,
-      name: "Gourmet Potato Chips",
-      price: "₹195.00",
-      rating: 4.7,
-      reviews: 28,
-      image: "https://images.pexels.com/photos/568805/pexels-photo-568805.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      varieties: ["Classic", "Spicy", "Herbs"]
-    },
-    {
-      id: 4,
-      name: "Assorted Cookies Box",
-      price: "₹495.00",
-      rating: 4.8,
-      reviews: 19,
-      image: "https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      varieties: ["Chocolate", "Vanilla", "Oatmeal"]
-    }
-  ];
 
   return (
     <section className="py-20 bg-white">

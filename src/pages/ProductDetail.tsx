@@ -14,8 +14,6 @@ const ProductDetail: React.FC = () => {
   const { loading: cartLoading } = useAppSelector((state) => state.cart);
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [addToCartSuccess, setAddToCartSuccess] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -36,16 +34,6 @@ const ProductDetail: React.FC = () => {
     ? [product.imageUrl]
     : ["https://images.pexels.com/photos/19090/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"];
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isHovering) return;
-
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-    setZoomPosition({ x, y });
-  };
-
   const handleMouseEnter = () => {
     // Clear any existing timeout
     if (timeoutRef.current) {
@@ -53,15 +41,10 @@ const ProductDetail: React.FC = () => {
       timeoutRef.current = null;
     }
     setIsHovering(true);
-    setIsZoomed(true);
   };
 
   const handleMouseLeave = () => {
     setIsHovering(false);
-    // Add a small delay before hiding zoom to prevent flickering
-    timeoutRef.current = setTimeout(() => {
-      setIsZoomed(false);
-    }, 100);
   };
 
   
@@ -94,7 +77,8 @@ const ProductDetail: React.FC = () => {
         name: product.name,
         price: product.price,
         imageUrl,
-        quantity: 1
+        quantity: 1,
+        category: product.category || 'Uncategorized'
       });
 
       // Show success message
@@ -159,7 +143,6 @@ const ProductDetail: React.FC = () => {
             className={`w-full h-80 md:h-96 bg-gray-100 rounded-lg overflow-hidden relative ${isHovering ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            onMouseMove={handleMouseMove}
           >
             <img
               src={productImages[selectedImageIndex]}

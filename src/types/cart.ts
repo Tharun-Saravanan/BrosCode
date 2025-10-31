@@ -5,6 +5,7 @@ export interface CartItem {
   price: number;
   imageUrl: string;
   quantity: number;
+  category: string;
 }
 
 export interface CartState {
@@ -22,6 +23,7 @@ export interface AddToCartPayload {
   price: number;
   imageUrl: string;
   quantity?: number;
+  category: string;
 }
 
 export interface UpdateCartItemPayload {
